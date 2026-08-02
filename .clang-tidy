@@ -1,0 +1,63 @@
+Checks: >
+  -*,
+  clang-analyzer-*,
+  bugprone-*,
+  performance-*,
+  modernize-*,
+  portability-*,
+  readability-*,
+  misc-*,
+  cppcoreguidelines-*,
+  # نام‌گذاری:
+  readability-identifier-naming
+
+WarningsAsErrors: '*'
+
+CheckOptions:
+
+# classes و structها: CamelCase
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+# enum
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumConstantCase
+    value: CamelCase
+
+  # function
+  - key: readability-identifier-naming.FunctionCase
+    value: camelBack
+  - key: readability-identifier-naming.MethodCase
+    value: camelBack
+ # property
+  - key: readability-identifier-naming.MemberCase
+    value: lower_case
+
+# property
+  - key: readability-identifier-naming.LocalVariableCase
+    value: lower_case
+  - key: readability-identifier-naming.ParameterCase
+    value: lower_case
+
+  #constant
+  - key: readability-identifier-naming.ConstantCase
+    value: UPPER_CASE
+
+
+# settings for specific checks
+  # modernize
+  - key: modernize-use-auto.MinTypeNameLength
+    value: '5'
+
+  # narrowing conversions
+  - key: cppcoreguidelines-narrowing-conversions.WarnOnFloatingPointToIntegerNarrowingConversion
+    value: 'true'
+
+  # performance for-range-copy
+  - key: performance-for-range-copy.WarnOnAllAutoCopies
+    value: 'true'
+
+  # enforce override
+  - key: modernize-use-override.AllowOverrideAndFinal
+    value: 'true'
+

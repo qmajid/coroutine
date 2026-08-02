@@ -5,9 +5,21 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+find_program(CLANG_TIDY_EXE NAMES clang-tidy)
+
+if (CLANG_TIDY_EXE)
+    message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
+    set(CMAKE_CXX_CLANG_TIDY
+        "${CLANG_TIDY_EXE};-warnings-as-errors=*")
+else()
+    message(WARNING "clang-tidy not found — skipping clang-tidy checks")
+endif()
+
+
 add_executable(coroutin
     main.cpp
-    coroutine_task_queue.cpp
+    src/coroutine_task_queue.cpp
+    src/await.cpp
 )
 
 target_include_directories(coroutin PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
